@@ -1,0 +1,175 @@
+@use './breakpoint' as *;
+@use './typography' as *;
+
+.body-shadow {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  &:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 101;
+    background: rgba(0, 0, 0, 0.5);
+  }
+}
+
+.scroll-top-btn {
+  position: fixed;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  background: #74b71a;
+  opacity: 0;
+  bottom: 30px;
+  right: 30px;
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
+  transition: opacity .3s;
+  cursor: pointer;
+  display: flex;
+  visibility: hidden;
+  &.show {
+    opacity: .3;
+    visibility: visible;
+  }
+  @include media-breakpoint-up(lg) {
+    height: 48px;
+    width: 48px;
+    right: 48px;
+    bottom: 48px;
+  }
+  &:hover {
+    opacity: 1;
+  }
+  .svg-icon-scroll-top {
+    max-width: 18px;
+    max-height: 16px;
+  }
+}
+
+*,
+:before,
+:after {
+  box-sizing: border-box;
+}
+
+
+
+.tooltip {
+  &__wrapper {
+    position: relative;
+    &:hover {
+      .tooltip__item {
+        display: block;
+      }
+    }
+  }
+  &__text {
+    &:after {
+      content: url("data:image/svg+xml,%3Csvg width='2' height='8' viewBox='0 0 2 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M0.5 0C0.223858 0 0 0.223858 0 0.5V1.5C0 1.77614 0.223858 2 0.5 2H1.5C1.77614 2 2 1.77614 2 1.5V0.5C2 0.223858 1.77614 0 1.5 0H0.5ZM0.5 3C0.223858 3 0 3.22386 0 3.5V7.5C0 7.77614 0.223858 8 0.5 8H1.5C1.77614 8 2 7.77614 2 7.5V3.5C2 3.22386 1.77614 3 1.5 3H0.5Z' fill='%23939BA3'/%3E%3C/svg%3E%0A");
+      left: 3px;
+      position: relative;
+      top: -4px;
+    }
+  }
+  &__item {
+    display: none;
+    background-color: #404040;
+    color: #fff;
+    padding: 12px;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 18px;
+    letter-spacing: 0.1px;
+    position: absolute;
+    align-items: center;
+    min-height: 16px;
+    width: 180px;
+    z-index: 1000;
+    @include media-breakpoint-up(md){
+      width: 245px;
+    }
+    &:before {
+      content: '';
+      width: 0;
+      height: 0;
+      border-style: solid;
+      position: absolute;
+    }
+  }
+  &__taxes {
+    display: inline-flex;
+    .tooltip__text {
+      display: none;
+      @include media-breakpoint-up(md){
+        display: inline-flex;
+        color: #67707A;
+        font-size: 14px;
+      }
+    }
+    &__item {
+
+    }
+  }
+}
+
+.tooltip_ar-center-left {
+  left: calc(100% + 15px);
+  &:before {
+    border-width: 4.5px 8px 4.5px 0;
+    border-color: transparent #404040 transparent transparent;
+    left: -8px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+  }
+}
+
+.tooltip_ar-center-bottom {
+  bottom: calc(100% + 15px);
+  &:before {
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: -8px;
+    border-width: 8px 4.5px 0 4.5px;
+    border-color: #404040 transparent transparent transparent;
+  }
+}
+
+.tooltip_ar-center-top{
+  top: calc(100% + 15px);
+  &:before {
+    left: 0px;
+    right: 0;
+    top: -8px;
+    margin: auto;
+    border-width: 0 4.5px 8px 4.5px;
+    border-color: transparent transparent #404040 transparent;
+  }
+}
+
+.tooltip_ar-center-right {
+  right: calc(100% + 15px);
+  &:before {
+    border-width: 4.5px 0 4.5px 8px;
+    border-color: transparent transparent transparent #404040;
+    right: -8px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+  }
+}
+
+.js-tab-content {
+  display: none;
+  &.active-tab {
+    display: block;
+  }
+}
+
