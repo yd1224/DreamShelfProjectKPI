@@ -17,5 +17,4 @@ public class Chapter
     public Book Book { get; set; }
 
     public ICollection<BookImage> BookImages { get; set; } = [];
-    // think about images
 }

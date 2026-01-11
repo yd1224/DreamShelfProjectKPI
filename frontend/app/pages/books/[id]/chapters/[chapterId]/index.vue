@@ -5,7 +5,6 @@ const route = useRoute()
 const bookId = route.params.id as string
 const chapterId = route.params.chapterId as string
 
-// Fetch book and chapter data
 const { bookData } = await useBook(bookId)
 const { chapterData } = await useChapter(chapterId, bookId)
 
@@ -23,7 +22,6 @@ watch(() => chapterData.value, (newChapterData) => {
   }
 }, { immediate: true })
 
-// Chapters sidebar state
 const isChaptersSidebarOpen = ref(false)
 
 const openChaptersSidebar = () => {
@@ -34,7 +32,6 @@ const closeChaptersSidebar = () => {
   isChaptersSidebarOpen.value = false
 }
 
-// Navigation helpers
 const sortedChapters = computed<Chapter[]>(() => {
   if (!bookData.value?.chapters) return []
   return [...bookData.value.chapters].sort((a, b) => a.chapterNumber - b.chapterNumber)
@@ -54,7 +51,6 @@ const nextChapterId = computed(() => {
   return sortedChapters.value[currentChapterIndex.value + 1]?.uuid || null
 })
 
-// Page meta
 useHead({
   title: computed(() => 
     chapterData.value 

@@ -14,7 +14,6 @@ const editableChapter = ref({
   isPublished: false
 })
 
-// Save state
 const isSaving = ref(false)
 const saveError = ref('')
 const saveSuccess = ref(false)

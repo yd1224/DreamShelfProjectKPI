@@ -19,5 +19,4 @@ public class Author
     public int? UserId { get; set; }
     public User? User { get; set; }
     public ICollection<Book> Books { get; set; } = [];
-    //first, las name or pseudonym is required
 }
