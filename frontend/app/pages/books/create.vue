@@ -11,6 +11,7 @@ useSeoMeta({
 })
 
 const $api = useNuxtApp().$api
+const bookUrl = ref<string | null>(null)
 
 const handleCreateBook = async (formData: FormBookData) => {
   // Convert reactive object to FormData
@@ -59,6 +60,7 @@ const handleCreateBook = async (formData: FormBookData) => {
   try {
     const response = await $api.createBook(formDataToSend)
     console.log('Book created successfully:', response)
+    bookUrl.value = response.bookId
   } catch (error) {
     console.error('Error creating book:', error)
   }
@@ -80,6 +82,9 @@ const handleDeleteImage = async (uploadedFileName: string)=>{
         </div>
       </div>
       <CreateBookForm :handle-submit="handleCreateBook" :delete-image="handleDeleteImage" />
+      <div v-if="bookUrl">
+        <NuxtLink :to="`/books/${bookUrl}`">Go to book</NuxtLink>
+      </div>
     </div>
   </div>
 </template>
